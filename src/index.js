@@ -4,12 +4,22 @@ const express = require('express');
 //inicia a classe dentro de uma variavel;
 const app = express();
 
+//É importante que se coloque esta função no express antes das rotas para que ele consiga reconhecer JSON no request body
+app.use(express.json())
+
 //ROTAS
 /* Seta rotas atraves de metodos 
 GET: Buscar informações no back-end
 POST: Criar uma informaççao no back-end
 PUT/PATCH: Alterar uma informação no back-end
 DELETE: Deletar uma informação no back-end
+*/
+
+//TIPOS DE PARAMENTROS
+/*
+Query Params: Filtros e Paginação
+Route Params: 
+Request Body:
 */
 
 app.get('/', (request, response)=>{
@@ -19,6 +29,7 @@ app.get('/', (request, response)=>{
 });
 
 app.get('/projects', (request, response) => {
+    const query = request.query;
     return response.json([
         'Projeto 1',
         'Projeto 2',
@@ -27,6 +38,7 @@ app.get('/projects', (request, response) => {
 })
 
 app.post('/projects', (request, response) => {
+    const body = request.body;
     return  response.json([
         'Projeto 1',
         'Projeto 2',
@@ -36,6 +48,7 @@ app.post('/projects', (request, response) => {
 })
 
 app.put('/projects/:id', (request, response) => {
+    const params = request.params;
     return  response.json([
         'Projeto 1',
         'Projeto 2',
