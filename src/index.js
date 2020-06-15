@@ -8,9 +8,11 @@ const app = express();
 /* Seta rotas atraves de metodos GET, POST, PUT e DELETE*/
 app.get('/', (request, response)=>{
     return response.json({
-        message: 'Hello World'
+        message: 'Hello GoStack'
     });
 })
 
 //seta porta a qual o aplicação sera rodada
-app.listen(3333);
+app.listen(3333, () => {
+    console.log('Back-end started!')
+});
